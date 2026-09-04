@@ -4,7 +4,6 @@ import Link from "next/link";
 const AnimalCard = ({ animal }) => {
   return (
     <div className="overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-
       <div className="relative h-56 w-full">
         <Image
           src={animal.image}
@@ -17,9 +16,7 @@ const AnimalCard = ({ animal }) => {
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-xl font-bold text-gray-800">
-              {animal.name}
-            </h3>
+            <h3 className="text-xl font-bold text-gray-800">{animal.name}</h3>
 
             <p className="mt-1 text-sm text-gray-500">
               {animal.breed} • {animal.location}
@@ -49,7 +46,7 @@ const AnimalCard = ({ animal }) => {
           </p>
 
           <Link
-            href={`/details-page?id=${animal.id}`}
+            href={`/details-page/${animal.id}`}
             className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700"
           >
             View Details
