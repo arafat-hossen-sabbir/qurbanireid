@@ -2,30 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { animals } from "../../data/animals";
 import { onAuthStateChanged } from "firebase/auth";
+
 import { auth } from "../../firebase/firebase.config";
-import { useEffect } from "react";
-
-
-const [user, setUser] = useState(null);
-const [authLoading, setAuthLoading] = useState(true);
-
-useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    setAuthLoading(false);
-  });
-
-  return () => unsubscribe();
-}, []);
+import animals from "../../data/animals";
 
 const DetailsPage = ({ params }) => {
-  const { id } = params;
+  // Next.js 16: params is a Promise
+  const { id } = use(params);
 
   const animal = animals.find((item) => item.id === Number(id));
+
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -34,6 +25,25 @@ const DetailsPage = ({ params }) => {
     address: "",
   });
 
+  // Check logged-in user
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setAuthLoading(false);
+
+      if (currentUser) {
+        setFormData((previous) => ({
+          ...previous,
+          name: currentUser.displayName || "",
+          email: currentUser.email || "",
+        }));
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Animal not found
   if (!animal) {
     return (
       <main className="flex min-h-[70vh] items-center justify-center px-4">
@@ -55,6 +65,7 @@ const DetailsPage = ({ params }) => {
     );
   }
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -64,19 +75,21 @@ const DetailsPage = ({ params }) => {
     }));
   };
 
-  if (!user) {
-    toast.error("Please login first to book this animal.");
-    return;
-  }
+  // Handle booking
   const handleBooking = (e) => {
     e.preventDefault();
 
+    if (!user) {
+      toast.error("Please login first to book this animal.");
+      return;
+    }
+
     toast.success(`Booking request submitted for ${animal.name}!`);
 
-
+    // Reset phone and address
     setFormData({
-      name: "",
-      email: "",
+      name: user.displayName || "",
+      email: user.email || "",
       phone: "",
       address: "",
     });
@@ -127,38 +140,44 @@ const DetailsPage = ({ params }) => {
               ৳{animal.price.toLocaleString()}
             </p>
 
+            {/* Animal Information */}
             <div className="mt-8 grid grid-cols-2 gap-4">
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm text-gray-500">Animal Type</p>
-                <p className="mt-1 font-semibold">{animal.type}</p>
+                <p className="mt-1 font-semibold text-black">{animal.type}</p>
               </div>
 
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm text-gray-500">Breed</p>
-                <p className="mt-1 font-semibold">{animal.breed}</p>
+                <p className="mt-1 font-semibold text-black">{animal.breed}</p>
               </div>
 
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm text-gray-500">Weight</p>
-                <p className="mt-1 font-semibold">{animal.weight}</p>
+                <p className="mt-1 font-semibold text-black">{animal.weight}</p>
               </div>
 
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm text-gray-500">Age</p>
-                <p className="mt-1 font-semibold">{animal.age}</p>
+                <p className="mt-1 font-semibold text-black">{animal.age}</p>
               </div>
 
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm text-gray-500">Location</p>
-                <p className="mt-1 font-semibold">{animal.location}</p>
+                <p className="mt-1 font-semibold text-black">
+                  {animal.location}
+                </p>
               </div>
 
               <div className="rounded-lg bg-gray-50 p-4">
                 <p className="text-sm text-gray-500">Category</p>
-                <p className="mt-1 font-semibold">{animal.category}</p>
+                <p className="mt-1 font-semibold text-black">
+                  {animal.category}
+                </p>
               </div>
             </div>
 
+            {/* Description */}
             <div className="mt-8">
               <h2 className="text-xl font-bold text-gray-900">Description</h2>
 
@@ -169,7 +188,7 @@ const DetailsPage = ({ params }) => {
           </div>
         </div>
 
-        {/* Booking Form */}
+        {/* Booking Section */}
         <div className="mt-10 rounded-2xl bg-white p-5 shadow-sm md:p-8">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-900">
@@ -181,80 +200,114 @@ const DetailsPage = ({ params }) => {
             </p>
           </div>
 
-          <form onSubmit={handleBooking} className="grid gap-5 md:grid-cols-2">
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
-
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter your name"
-                required
-                className="w-full rounded-lg border px-4 py-3 outline-none focus:border-green-600"
-              />
+          {/* Checking authentication */}
+          {authLoading ? (
+            <div className="rounded-lg bg-gray-50 p-6 text-center">
+              <p className="text-gray-500">Checking login status...</p>
             </div>
+          ) : user ? (
+            /* Logged-in user: Booking form */
+            <form
+              onSubmit={handleBooking}
+              className="grid gap-5 md:grid-cols-2"
+            >
+              {/* Name */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Full Name
+                </label>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Email
-              </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                  required
+                  className="text-black w-full rounded-lg border px-4 py-3 outline-none focus:border-green-600"
+                />
+              </div>
 
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                required
-                className="w-full rounded-lg border px-4 py-3 outline-none focus:border-green-600"
-              />
-            </div>
+              {/* Email */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Email
+                </label>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Phone Number
-              </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  required
+                  className="w-full rounded-lg border px-4 py-3 outline-none text-black focus:border-green-600"
+                />
+              </div>
 
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="01XXXXXXXXX"
-                required
-                className="w-full rounded-lg border px-4 py-3 outline-none focus:border-green-600"
-              />
-            </div>
+              {/* Phone */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Phone Number
+                </label>
 
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Address
-              </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="01XXXXXXXXX"
+                  required
+                  className=" text-black w-full rounded-lg border px-4 py-3 outline-none focus:border-green-600"
+                />
+              </div>
 
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                placeholder="Enter your address"
-                required
-                className="w-full rounded-lg border px-4 py-3 outline-none focus:border-green-600"
-              />
-            </div>
+              {/* Address */}
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Address
+                </label>
 
-            <div className="md:col-span-2">
-              <button
-                type="submit"
-                className="w-full rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition hover:bg-green-700"
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  placeholder="Enter your address"
+                  required
+                  className="text-black w-full rounded-lg border px-4 py-3 outline-none focus:border-green-600"
+                />
+              </div>
+
+              {/* Submit */}
+              <div className="md:col-span-2">
+                <button
+                  type="submit"
+                  className="w-full rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition hover:bg-green-700"
+                >
+                  Submit Booking Request
+                </button>
+              </div>
+            </form>
+          ) : (
+            /* Logged-out user */
+            <div className="rounded-xl bg-gray-50 p-8 text-center">
+              <h3 className="text-xl font-semibold text-gray-900">
+                Login Required
+              </h3>
+
+              <p className="mt-2 text-gray-500">
+                You need to login before booking an animal.
+              </p>
+
+              <Link
+                href="/login"
+                className="mt-5 inline-block rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition hover:bg-green-700"
               >
-                Submit Booking Request
-              </button>
+                Login to Continue
+              </Link>
             </div>
-          </form>
+          )}
         </div>
       </div>
     </main>

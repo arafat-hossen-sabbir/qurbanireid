@@ -31,12 +31,12 @@ const AnimalCard = ({ animal }) => {
         <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
           <div className="rounded-lg bg-gray-50 p-3">
             <p className="text-gray-500">Weight</p>
-            <p className="font-semibold">{animal.weight} kg</p>
+            <p className="font-semibold text-black">{animal.weight} kg</p>
           </div>
 
           <div className="rounded-lg bg-gray-50 p-3">
             <p className="text-gray-500">Age</p>
-            <p className="font-semibold">{animal.age}</p>
+            <p className="font-semibold text-black">{animal.age}</p>
           </div>
         </div>
 
