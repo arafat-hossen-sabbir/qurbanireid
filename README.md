@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# QurbaniHat – Livestock Booking Platform
 
-## Getting Started
+QurbaniHat is a modern livestock marketplace where users can explore animals for Qurbani such as cows and goats, view detailed information, and place a booking after authentication.
 
-First, run the development server:
+## 🔗 Live URL
+[https://qurbanihat.vercel.app](https://your-live-url.vercel.app)
 
-```bash
+## 🔗 GitHub Repository
+[https://github.com/your-username/qurbanihat](https://github.com/your-username/qurbanihat)
+
+## ✨ Key Features
+
+- Browse and sort livestock animals by price
+- Detailed animal view with full specifications
+- Booking form for authenticated users
+- Firebase Authentication (Email/Password + Google Login)
+- User Registration with name, email, photo URL
+- My Profile page with update information feature
+- Fully responsive design (mobile, tablet, desktop)
+- Toast notifications for user feedback
+- Loading states while fetching data
+- Custom 404 Not Found page
+- Secure Firebase configuration using environment variables
+
+## 🛠️ Technologies & NPM Packages Used
+
+- **Next.js** – React framework (App Router)
+- **Tailwind CSS** – Utility-first CSS framework
+- **Firebase** – Authentication
+- **react-hot-toast** – Toast notifications
+- **animate.css** – Animation effects
+- **react-icons** – Icon library
+
+## 📦 Getting Started Locally
+
+\`\`\`bash
+git clone https://github.com/your-username/qurbanihat.git
+cd qurbanihat
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env.local` file with your Firebase credentials:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+\`\`\`env
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+\`\`\`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Routes
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Public:** `/`, `/animals`, `/login`, `/register`
+**Private:** `/details-page/:id`, `/my-profile`, `/update-profile`
