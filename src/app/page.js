@@ -11,7 +11,6 @@ const Home = () => {
       {/* Hero Section */}
       <section className="bg-green-50">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
-
           <div>
             <span className="inline-block rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
               Trusted Livestock Marketplace
@@ -19,14 +18,12 @@ const Home = () => {
 
             <h1 className="mt-5 text-4xl font-extrabold leading-tight text-gray-900 md:text-6xl">
               Find the Perfect
-              <span className="block text-green-700">
-                Qurbani Animal
-              </span>
+              <span className="block text-green-700">Qurbani Animal</span>
             </h1>
 
             <p className="mt-5 max-w-xl text-lg leading-8 text-gray-600">
-              Explore healthy and trusted livestock from different locations
-              and choose the right animal for your Qurbani.
+              Explore healthy and trusted livestock from different locations and
+              choose the right animal for your Qurbani.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -56,30 +53,21 @@ const Home = () => {
             />
 
             <div className="absolute bottom-5 left-5 rounded-xl bg-white/95 px-5 py-3 shadow-lg">
-              <p className="text-sm text-gray-500">
-                Featured Animal
-              </p>
+              <p className="text-sm text-gray-500">Featured Animal</p>
 
-              <p className="font-bold text-gray-800">
-                {animals[0].name}
-              </p>
+              <p className="font-bold text-gray-800">{animals[0].name}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Featured Animals */}
-      <section
-        id="featured"
-        className="mx-auto max-w-7xl px-4 py-16"
-      >
+      <section id="featured" className="mx-auto max-w-7xl px-4 py-16">
         <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <p className="font-semibold text-green-600">
-              OUR COLLECTION
-            </p>
+            <p className="font-semibold text-green-600">OUR COLLECTION</p>
 
-            <h2 className="mt-2 text-3xl font-bold text-gray-900">
+            <h2 className="mt-2 text-3xl font-bold text-gray-200">
               Featured Animals
             </h2>
 
@@ -107,26 +95,22 @@ const Home = () => {
       <section className="bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="mx-auto mb-10 max-w-2xl text-center">
-            <p className="font-semibold text-green-600">
-              QURBANI GUIDE
-            </p>
+            <p className="font-semibold text-green-600">QURBANI GUIDE</p>
 
             <h2 className="mt-2 text-3xl font-bold text-gray-900">
               Qurbani Tips
             </h2>
 
             <p className="mt-3 text-gray-600">
-              A few simple things to remember when choosing your Qurbani
-              animal.
+              A few simple things to remember when choosing your Qurbani animal.
             </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-
             <div className="rounded-2xl bg-white p-6 shadow-sm">
               <div className="text-4xl">🐄</div>
 
-              <h3 className="mt-4 text-xl font-bold">
+              <h3 className="mt-4 text-xl font-bold text-black">
                 Check Animal Health
               </h3>
 
@@ -139,7 +123,7 @@ const Home = () => {
             <div className="rounded-2xl bg-white p-6 shadow-sm">
               <div className="text-4xl">⚖️</div>
 
-              <h3 className="mt-4 text-xl font-bold">
+              <h3 className="mt-4 text-xl font-bold text-black">
                 Check Age & Weight
               </h3>
 
@@ -152,7 +136,7 @@ const Home = () => {
             <div className="rounded-2xl bg-white p-6 shadow-sm">
               <div className="text-4xl">📍</div>
 
-              <h3 className="mt-4 text-xl font-bold">
+              <h3 className="mt-4 text-xl font-bold text-black">
                 Check Location
               </h3>
 
@@ -161,7 +145,6 @@ const Home = () => {
                 available arrangements.
               </p>
             </div>
-
           </div>
         </div>
       </section>
@@ -169,13 +152,9 @@ const Home = () => {
       {/* Top Breeds */}
       <section className="mx-auto max-w-7xl px-4 py-16">
         <div className="mb-10 text-center">
-          <p className="font-semibold text-green-600">
-            POPULAR CHOICES
-          </p>
+          <p className="font-semibold text-green-600">POPULAR CHOICES</p>
 
-          <h2 className="mt-2 text-3xl font-bold text-gray-900">
-            Top Breeds
-          </h2>
+          <h2 className="mt-2 text-3xl font-bold text-gray-200">Top Breeds</h2>
 
           <p className="mt-3 text-gray-600">
             Explore some popular livestock breeds available on QurbaniHat.
@@ -183,15 +162,12 @@ const Home = () => {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
           <div className="rounded-2xl border bg-white p-6 text-center transition hover:-translate-y-1 hover:shadow-md">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl">
               🐄
             </div>
 
-            <h3 className="mt-4 font-bold text-gray-900">
-              Deshi Cow
-            </h3>
+            <h3 className="mt-4 font-bold text-gray-900">Deshi Cow</h3>
 
             <p className="mt-2 text-sm text-gray-500">
               Hardy and locally popular
@@ -203,9 +179,7 @@ const Home = () => {
               🐄
             </div>
 
-            <h3 className="mt-4 font-bold text-gray-900">
-              Red Chittagong
-            </h3>
+            <h3 className="mt-4 font-bold text-gray-900">Red Chittagong</h3>
 
             <p className="mt-2 text-sm text-gray-500">
               Famous Bangladeshi breed
@@ -217,9 +191,7 @@ const Home = () => {
               🐄
             </div>
 
-            <h3 className="mt-4 font-bold text-gray-900">
-              Friesian
-            </h3>
+            <h3 className="mt-4 font-bold text-gray-900">Friesian</h3>
 
             <p className="mt-2 text-sm text-gray-500">
               Large and strong cattle
@@ -231,15 +203,10 @@ const Home = () => {
               🐐
             </div>
 
-            <h3 className="mt-4 font-bold text-gray-900">
-              Black Bengal
-            </h3>
+            <h3 className="mt-4 font-bold text-gray-900">Black Bengal</h3>
 
-            <p className="mt-2 text-sm text-gray-500">
-              Popular goat breed
-            </p>
+            <p className="mt-2 text-sm text-gray-500">Popular goat breed</p>
           </div>
-
         </div>
       </section>
 
@@ -247,11 +214,8 @@ const Home = () => {
       <section className="bg-green-900 text-white">
         <div className="mx-auto max-w-7xl px-4 py-16">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
-
             <div>
-              <p className="font-semibold text-green-300">
-                WHY QURBANIHAT?
-              </p>
+              <p className="font-semibold text-green-300">WHY QURBANIHAT?</p>
 
               <h2 className="mt-3 text-3xl font-bold md:text-4xl">
                 A simpler way to find your Qurbani animal.
@@ -265,11 +229,8 @@ const Home = () => {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-
               <div className="rounded-2xl bg-green-800 p-5">
-                <h3 className="text-lg font-bold">
-                  Healthy Animals
-                </h3>
+                <h3 className="text-lg font-bold">Healthy Animals</h3>
 
                 <p className="mt-2 text-sm leading-6 text-green-100">
                   Browse detailed information about available livestock.
@@ -277,9 +238,7 @@ const Home = () => {
               </div>
 
               <div className="rounded-2xl bg-green-800 p-5">
-                <h3 className="text-lg font-bold">
-                  Easy Comparison
-                </h3>
+                <h3 className="text-lg font-bold">Easy Comparison</h3>
 
                 <p className="mt-2 text-sm leading-6 text-green-100">
                   Compare price, weight, breed, age and location.
@@ -287,9 +246,7 @@ const Home = () => {
               </div>
 
               <div className="rounded-2xl bg-green-800 p-5">
-                <h3 className="text-lg font-bold">
-                  Simple Booking
-                </h3>
+                <h3 className="text-lg font-bold">Simple Booking</h3>
 
                 <p className="mt-2 text-sm leading-6 text-green-100">
                   Choose an animal and submit your booking information.
@@ -297,20 +254,16 @@ const Home = () => {
               </div>
 
               <div className="rounded-2xl bg-green-800 p-5">
-                <h3 className="text-lg font-bold">
-                  User Friendly
-                </h3>
+                <h3 className="text-lg font-bold">User Friendly</h3>
 
                 <p className="mt-2 text-sm leading-6 text-green-100">
                   Designed to work smoothly across different devices.
                 </p>
               </div>
-
             </div>
           </div>
         </div>
       </section>
-
     </div>
   );
 };
