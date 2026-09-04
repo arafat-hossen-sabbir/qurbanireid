@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import ToastProvider from "@/app/components/ToastProvider";
 
 export const metadata = {
   title: "QurbaniHat",
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <ToastProvider />
         <Navbar />
 
         <main className="min-h-screen">{children}</main>
