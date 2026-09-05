@@ -6,7 +6,7 @@ QurbaniHat is a modern livestock marketplace where users can explore animals for
 [https://qurbanihat.vercel.app](https://your-live-url.vercel.app)
 
 ## 🔗 GitHub Repository
-[https://github.com/your-username/qurbanihat](https://github.com/your-username/qurbanihat)
+[https://github.com/arafat-hossen-sabbir/qurbanireid](https://github.com/your-username/qurbanihat)
 
 ## ✨ Key Features
 
@@ -34,7 +34,7 @@ QurbaniHat is a modern livestock marketplace where users can explore animals for
 ## 📦 Getting Started Locally
 
 \`\`\`bash
-git clone https://github.com/your-username/qurbanihat.git
+git clone https://github.com/arafat-hossen-sabbir/qurbanihat.git
 cd qurbanihat
 npm install
 npm run dev
