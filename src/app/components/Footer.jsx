@@ -1,62 +1,66 @@
 import Link from "next/link";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="mt-16 bg-green-950 text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-3">
+    <footer className="mt-16 bg-gray-900 text-gray-300">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8">
         {/* About */}
         <div>
-          <h2 className="text-2xl font-bold text-green-400">QurbaniHat</h2>
+          <h2 className="text-2xl font-bold text-white">QurbaniHat</h2>
 
-          <p className="mt-4 max-w-sm text-sm leading-6 text-gray-300">
-            A trusted livestock marketplace where you can explore healthy
-            animals for your Qurbani from different locations.
+          <p className="mt-4 max-w-sm leading-7 text-gray-400">
+            A trusted livestock booking platform that helps families find
+            healthy and suitable animals for Qurbani.
           </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-lg font-semibold text-white">Quick Links</h3>
+
+          <div className="mt-4 flex flex-col gap-3">
+            <Link href="/" className="hover:text-white">
+              Home
+            </Link>
+
+            <Link href="/animals" className="hover:text-white">
+              All Animals
+            </Link>
+
+            <Link href="/my-profile" className="hover:text-white">
+              My Profile
+            </Link>
+          </div>
         </div>
 
         {/* Contact */}
         <div>
-          <h3 className="text-lg font-semibold">Contact Us</h3>
+          <h3 className="text-lg font-semibold text-white">Contact Us</h3>
 
-          <div className="mt-4 space-y-2 text-sm text-gray-300">
+          <div className="mt-4 space-y-3 text-gray-400">
             <p>Email: support@qurbanihat.com</p>
             <p>Phone: +880 1XXX-XXXXXX</p>
             <p>Dhaka, Bangladesh</p>
           </div>
-        </div>
 
-        {/* Social */}
-        <div>
-          <h3 className="text-lg font-semibold">Follow Us</h3>
+          <div className="mt-5 flex gap-4">
+            <a href="#" className="hover:text-white">
+              Facebook
+            </a>
 
-          <div className="mt-4 flex gap-4">
-            <Link
-              href="#"
-              className="rounded-full bg-green-800 p-3 hover:bg-green-700"
-            >
-              <FaFacebookF />
-            </Link>
+            <a href="#" className="hover:text-white">
+              Instagram
+            </a>
 
-            <Link
-              href="#"
-              className="rounded-full bg-green-800 p-3 hover:bg-green-700"
-            >
-              <FaInstagram />
-            </Link>
-
-            <Link
-              href="#"
-              className="rounded-full bg-green-800 p-3 hover:bg-green-700"
-            >
-              <FaYoutube />
-            </Link>
+            <a href="#" className="hover:text-white">
+              YouTube
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-green-900 py-5 text-center text-sm text-gray-400">
-        © 2026 QurbaniHat. All rights reserved.
+      <div className="border-t border-gray-800 px-4 py-5 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} QurbaniHat. All rights reserved.
       </div>
     </footer>
   );
